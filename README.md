@@ -1,4 +1,4 @@
-# TechnicalAssessmentFhirDE
+# Technical Assessment - Fhir DE
 This REPO is dedicated to the CMS dataset coding challenge for Health Partners.
 
 ## Instructions
@@ -14,3 +14,11 @@ _Please email your code and a sample of your output to your recruiter or intervi
 ## Submission Requirements:
 - The job must be written in python and must run on a regular Windows or linux computer (i.e. there shouldn't be anything specific to Databricks, AWS, etc.)
 - Include a requirements.txt file if your job uses python packages that do not come with the default python install
+
+
+## Additional Notes for Solution:
+- Assuming Chron scheduler will be setup like:
+    ```chrontab -e & 0 0 * * * python solution.py``` <- or in airflow, etc. For daily task execution.
+- There are a few variables: `max_downloads` & `reset_state` for your testing purposes of the code's functionality.
+- Relatively modular with the expansion of use cases in mind for designing the solution.
+
