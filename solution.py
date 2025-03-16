@@ -22,6 +22,7 @@ import requests
 import io
 import pandas as pd
 import threading
+import pathlib
 
 # Set to 0 for all, as a warning it downloads ALOT of data.
 max_downloads = 2
@@ -43,6 +44,9 @@ download_urls = RS.get_download_dataset_urls()
 # 2. THREADED DOWNLOAD + PROCESS (PARALLEL)
 # --------------------------------------------
 
+dir = pathlib.Path("downloads")
+dir.mkdir(parents=True, exist_ok=True)
+
 def threaded_download_and_process(url: str):
     """
     :param: url: str - URL to download
@@ -55,7 +59,7 @@ def threaded_download_and_process(url: str):
     df = pd.read_csv(file_like)
     df.columns = [col.lower().replace(" ", "_") for col in df.columns]
     df.columns = df.columns.str.replace(r'[^a-zA-Z0-9\s]', '_', regex=True)
-
+    
     df.to_csv("downloads/" + url.split("/")[-1], index=False)
     print(f"Downloaded and processed: {url}")
 
